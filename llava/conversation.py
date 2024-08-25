@@ -3,9 +3,11 @@ from enum import auto, Enum
 from typing import List, Any, Dict, Union, Tuple
 import re
 import base64
+import os
 from io import BytesIO
 from PIL import Image
 from transformers import AutoTokenizer
+
 
 
 class SeparatorStyle(Enum):
@@ -384,7 +386,7 @@ conv_llava_llama_3 = Conversation(
     sep="<|eot_id|>",
     sep_style=SeparatorStyle.LLAMA_3,
     tokenizer_id="meta-llama/Meta-Llama-3-8B-Instruct",
-    tokenizer=AutoTokenizer.from_pretrained("meta-llama/Meta-Llama-3-8B-Instruct"),
+    tokenizer=AutoTokenizer.from_pretrained(os.getenv('MODELS') + "/Meta-Llama-3-8B-Instruct"),
     stop_token_ids=[128009],
 )
 
